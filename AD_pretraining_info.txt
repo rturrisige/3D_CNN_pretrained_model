@@ -1,0 +1,45 @@
+
+---- SUMMARY
+
+Dataset: brain T1-weighted MRI from ADNI
+Binary Classification: CN vs AD
+Model: 3D Convolutional Neural Network
+Augumentation strategy: to each training image, three transformations (zoom, shift, rotation) are applied. The size of the augmented data is three times the number of training samples.
+
+
+
+--- DETAILS
+
+Data processing:
+Images are downsized to 96x96x73.
+The image is firstly rescaled of 50% along all dimensions and then resized to 96x96x73.
+Intensity-normalization is applied omitting the zero intensity voxels from the calculation of the mean. 
+
+Number of samples: 
+1556 Train samples - 80 Val samples - 80 Test samples
+
+Network parameters
+out_channels: [8, 8, 16, 16, 32, 32, 64, 64]
+in_channels: [1, 8, 8, 16, 16, 32, 32, 64]
+Number of convolutional layers: 8
+kernels per layer: [(3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3)]
+pooling after each layer: [(4, 4, 4), (0, 0, 0), (3, 3, 3), (0, 0, 0), (2, 2, 2), (0, 0, 0), (2, 2, 2), (0, 0, 0)]
+weights of classification layer (fully connected): [256, 2]
+dropout: 0.0
+
+Training parameters
+LR = 0.001
+Decay = 1.0
+L2 reg. = 0.01
+Max Epochs = 200
+Max Errors = 20
+Batch size = 50
+
+
+							
+---- RESULTS
+
+Best Validation accuracy: 0.8374999761581421
+Testing accuracy: 0.887499988079071
+
+
