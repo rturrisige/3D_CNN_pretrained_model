@@ -23,7 +23,8 @@ The architecture can be imported from `AD_pretrained_utilities.CNN`
 and the weights are provided as `AD_pretrained_weights.pt`. 
 
 
-More information about the model pre-training can be found in `AD_pretraining_info.txt.`
+More information about the model pre-training can be found in `AD_pretraining_info.txt` and in the full article [The effect of data augmentation and 3D-CNN depth on Alzheimer's Disease detection.
+](https://arxiv.org/abs/2309.07192)
 
 ### Requirements 
 The codes have been tested on Python 3.8 and PyTorch 1.12.1. 
@@ -34,3 +35,23 @@ are required:
 - alive_progress
 - os, sys, argparse, glob
 - PyTorch
+
+# CITATION
+
+Please if you use the pre-trained model, cite it as 
+
+@misc{turrisi2023effect,
+
+      title={The effect of data augmentation and 3D-CNN depth on Alzheimer's Disease detection}, 
+      
+      author={Rosanna Turrisi and Alessandro Verri and Annalisa Barla},
+      
+      year={2023},
+      
+      eprint={2309.07192},
+      
+      archivePrefix={arXiv},
+      
+      primaryClass={eess.IV}
+}
+
