@@ -40,18 +40,12 @@ are required:
 
 Please if you use the pre-trained model, cite it as 
 
-@misc{turrisi2023effect,
-
-      title={The effect of data augmentation and 3D-CNN depth on Alzheimer's Disease detection}, 
-      
-      author={Rosanna Turrisi and Alessandro Verri and Annalisa Barla},
-      
-      year={2023},
-      
-      eprint={2309.07192},
-      
-      archivePrefix={arXiv},
-      
-      primaryClass={eess.IV}
+@article{turrisi18deep,
+  title={Deep Learning-based Alzheimer's Disease detection: reproducibility and the effect of modeling choices},
+  author={Turrisi, Rosanna and Verri, Alessandro and Barla, Annalisa},
+  journal={Frontiers in Computational Neuroscience},
+  volume={18},
+  pages={1360095},
+  publisher={Frontiers}
 }
 
