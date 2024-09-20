@@ -41,11 +41,18 @@ are required:
 Please if you use the pre-trained model, cite it as 
 
 @article{turrisi18deep,
+
   title={Deep Learning-based Alzheimer's Disease detection: reproducibility and the effect of modeling choices},
+  
   author={Turrisi, Rosanna and Verri, Alessandro and Barla, Annalisa},
+  
   journal={Frontiers in Computational Neuroscience},
+  
   volume={18},
+  
   pages={1360095},
+  
   publisher={Frontiers}
+  
 }
 
