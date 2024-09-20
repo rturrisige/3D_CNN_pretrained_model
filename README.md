@@ -23,8 +23,8 @@ The architecture can be imported from `AD_pretrained_utilities.CNN`
 and the weights are provided as `AD_pretrained_weights.pt`. 
 
 
-More information about the model pre-training can be found in `AD_pretraining_info.txt` and in the full article [The effect of data augmentation and 3D-CNN depth on Alzheimer's Disease detection.
-](https://arxiv.org/abs/2309.07192)
+More information about the model pre-training can be found in `AD_pretraining_info.txt` and in the full article [Deep learning-based Alzheimer's disease detection: reproducibility and the effect of modeling choices.
+](https://doi.org/10.3389/fncom.2024.1360095)
 
 ### Requirements 
 The codes have been tested on Python 3.8 and PyTorch 1.12.1. 
