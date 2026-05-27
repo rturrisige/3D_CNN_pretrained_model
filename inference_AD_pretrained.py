@@ -17,13 +17,27 @@ def test(net, batch_size, data_path, saver_path, img_preprocessing=False, device
         os.makedirs(saver_path)
     # Load data
     dataset = gg(data_path + '/*.npy')
+    dataset = [f for f in dataset if '1_ADNI' not in os.path.basename(f)]
     if len(dataset) == 0:
-        print('Empty folder. Please choose another folder containin npy files to process.')
+        print('Empty folder. Please choose another folder containing npy files to process.')
         sys.exit()
+    else:
+        print('N. samples:', len(dataset))
     test_data = loader(dataset, transform=torch_norm, preprocessing=img_preprocessing)
     test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size, shuffle=False, pin_memory=True)
     # Make predictions
-    y_test, yp0, yp1, y_pred = predict(net, test_loader, device)
+    with torch.no_grad:
+        y_test, yp0, yp1, y_pred = predict(net, test_loader, device)
+
+    filename = [os.path.basename(f) for f in dataset]
+    results_df = pd.DataFrame({
+        'filename': filename,
+        'label': y_test,
+        'predicted_label': y_pred,
+        'prob_class_0': yp0,
+        'prob_class_1': yp1
+    })
+    results_df.to_csv(os.path.join(saver_path, 'predictions.csv'), index=False)
     # Evaluate data
     precision_0 = precision_score(y_test, y_pred, pos_label=0)
     precision_1 = precision_score(y_test, y_pred, pos_label=1)
@@ -57,6 +71,12 @@ def test(net, batch_size, data_path, saver_path, img_preprocessing=False, device
     logfile.flush()
     logfile.close()
 
+    print('Evaluation of (8CL, B) model pretrained on AD.')
+    print('Dataset:' + data_path)
+    print('F1-score: {:.4f}'.format(f1))
+    print('Accuracy: {:.4f}'.format(acc))
+    print('AUC: {:.4f}.'.format(roc_auc_1))
+
     # PLOTS
     plot_complete_report(df_report, saver_path)
     plot_auc_curve(fpr, tpr, roc_auc_1, saver_path)
@@ -70,9 +90,9 @@ def test(net, batch_size, data_path, saver_path, img_preprocessing=False, device
 source = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 config = CNN_8CL_B()
 model = CNN(config).to(source)
-w = torch.load(current_path + '/AD_pretrained_weights.pt')
+w = torch.load(current_path + '/AD_pretrained_weights.pt', weights_only=True)
 model.load_state_dict(w)
-
+model.eval()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="""Extract embeddings from the 3D-CNN (8CL, B) model pretrained on AD.

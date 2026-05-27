@@ -15,7 +15,7 @@
 # Path and constants definition
 DATA_DIR=./
 SAVER_DIR=./
-IMG_PROCESSING=False
+IMG_PROCESSING=True
 BATCH_SIZE=50
 
 echo " "
@@ -29,4 +29,4 @@ time CUDA_VISIBLE_DEVICES=0 python -u inference_AD_pretrained.py \
 	--data_dir $DATA_DIR \
 	--saver_dir $SAVER_DIR \
 	--batch_size $BATCH_SIZE \
-	--preprocessing IMG_PROCESSING \
+	--preprocessing $IMG_PROCESSING

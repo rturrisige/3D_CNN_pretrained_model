@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset
 tonpy = lambda x: x.detach().cpu().numpy()
 from alive_progress import alive_bar
-
+import os
 from scipy import ndimage
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from statistics import stdev
@@ -181,6 +181,9 @@ def predict(net, data_loader, device, return_prob=True):
         for _, (x, y) in enumerate(data_loader):
             x = x.to(device)
             output = net(x).detach().cpu()
+            if torch.isnan(output).any():
+                print("⚠️ Warning: NaNs detected in model output probabilities. Fixing them...")
+                output = torch.nan_to_num(output, nan=0.0)
             if return_prob:
                 prob0 = output[:, 0]
                 prob1 = output[:, 1]
