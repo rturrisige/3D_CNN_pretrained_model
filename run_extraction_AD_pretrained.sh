@@ -30,4 +30,4 @@ time CUDA_VISIBLE_DEVICES=0 python -u extract_embeddings_AD_pretrained.py \
 	--data_dir $DATA_DIR \
 	--saver_dir $SAVER_DIR \
 	--embedding $EMBEDDING \
-	--preprocessing IMG_PROCESSING \
+	--preprocessing $IMG_PROCESSING
